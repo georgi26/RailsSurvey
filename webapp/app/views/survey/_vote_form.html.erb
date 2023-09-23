@@ -1,16 +1,20 @@
 <div>
 <h2><%= @survey.name %><h2>
 <%= form_with url: "/survey/vote" do |form| %>
-<div class="row">
+<div class="container">
     <% @survey.answers.each do |answer| %>
-        <article>
-            <div class="row">
-                <%= form.radio_button("answer_id", answer.id) %>
-                <%= form.label("answer_id_#{answer.id}", answer.text) %>
+        <div class="mt-4">
+            <div class="form-check">
+                <div class="col col-2">
+                    <%= form.radio_button("answer_id", answer.id, class: "form-check-input") %>
+                </div>
+                <div class="col">
+                    <%= form.label("answer_id_#{answer.id}", answer.text, { class: "form-check-label fs-5" }) %>
+                </div>
             </div>
-        </article>
+        </div>
     <% end %>
     </div>
-    <button type="submit" >Submit</button>
+    <button class="btn btn-primary mt-4" type="submit" >Submit</button>
 <% end %>
 </div>
