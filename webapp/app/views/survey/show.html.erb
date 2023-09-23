@@ -1,12 +1,11 @@
 <div class="container"> 
     <h2><%= @survey.name %><h2>
     <% @answers.each do |answer| %>
-    <% percent = ((answer.votes_count / @total) * 100).to_i %>
     <div class="row mt-4">
-        <div class="col col-1 fs-5"><%= percent %> %</div>
+        <div class="col col-1 fs-5"><%= answer.votes_percent %> % </div>
         <div class="col col-4">
-            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" style="width: <%= percent %>%"><%= percent %>%</div>
+            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<%= answer.votes_percent %>" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: <%= answer.votes_percent %>%"><%= answer.votes_percent %>%</div>
             </div>
         </div>
         <div class="col fs-5">

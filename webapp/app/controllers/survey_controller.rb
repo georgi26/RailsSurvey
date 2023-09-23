@@ -1,6 +1,6 @@
 class SurveyController < ApplicationController
   def index
-    @survey = Survey.eager_load(:answers).first
+    @survey = loadSurvey
   end
 
   def vote
@@ -8,23 +8,23 @@ class SurveyController < ApplicationController
     if (@vote.save)
       redirect_to action: "show"
     else
-      @survey = Survey.eager_load(:answers).first
+      @survey = loadSurvey
       render :index, status: :unprocessable_entity
     end
   end
 
   def show
-    @survey = Survey.eager_load(:answers).first
-    @answers = Answer.left_joins(:votes)
-      .select("answers.*, COUNT(votes.id) as votes_count")
-      .group("answers.id").where(survey_id: @survey.id)
-    @total = @answers.reduce(0) do |count, a| a.votes_count + count end
-    @total = @total.to_f
+    @survey = loadSurvey
+    @answers = @survey.answers_with_votes
   end
 
   private
 
   def vote_params
     params.permit(:answer_id)
+  end
+
+  def loadSurvey()
+    Survey.eager_load(:answers).first
   end
 end
