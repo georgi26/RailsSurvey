@@ -1,0 +1,17 @@
+<div>
+<h2><%= @survey.name %><h2>
+<form action="/survey/vote" method="post">
+<input type="hidden" name="turbo" value="false">
+<% @survey.answers.each do |answer| %>
+<div class="row">
+  <input type="radio" name="answer_id" value="<%= answer.id %>" id="a_id_<%= answer.id %>">
+  <label  for="a_id_<%= answer.id %>">
+    <sub><%= answer.text %></sub>
+  </label>
+</div>
+
+<% end %>
+
+ <button type="submit" >Submit</button>
+</form>
+</div>
