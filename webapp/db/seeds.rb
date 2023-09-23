@@ -9,7 +9,7 @@
 survey = Survey.first
 unless survey
   Survey.transaction do
-    survey = Survey.create(name: "Ще отстрани ли Висшия съдебен съвет главния прокурор Иван Гешев.")
+    survey = Survey.create(name: "Ще отстрани ли Висшия съдебен съвет главния прокурор Иван Гешев ?")
     Answer.create(survey_id: survey.id, text: "Да, в сигнала на Бойко Борисов има достатъчно данни за негови нарушения.")
     Answer.create(survey_id: survey.id, text: "Да, съдебния съвет няма как да си затвори очите.")
     Answer.create(survey_id: survey.id, text: "Да, за да се направят на независими.")

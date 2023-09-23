@@ -1,4 +1,15 @@
 <div class="container"> 
-  
-Test
+  <h2><%= @survey.name %><h2>
+<% @answers.each do |answer| %>
+<% percent = ((answer.votes_count / @total) * 100).to_i %>
+<div class="row">
+    <div class="row"></div>
+    <div class="row">
+    <progress  value="<%= percent %>" max="100"></progress>
+    <small><%= percent %> %</small>
+    <small><%= answer.text %></small>
+    </div>
+</div>
+<% end %>
+<a href="/">Гласувай отново</a>
 <div >
